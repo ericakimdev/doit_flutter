@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
 }
 
 class WidgetApp extends StatefulWidget {
-  WidgetApp({Key key}) : super(key: key);
+  WidgetApp({Key? key}) : super(key: key);
   @override
   _WidgetExampleState createState() => _WidgetExampleState();
 }
 
 class _WidgetExampleState extends State<WidgetApp> {
   List _buttonList = ['plus', 'minus', 'multi', 'divide'];
-  List<DropdownMenuItem<String>> _dropDownMenuItems = new List();
-  String _buttonText;
+  List<DropdownMenuItem<String>> _dropDownMenuItems = [];
+  String? _buttonText;
   String sum = '';
   TextEditingController value1 = TextEditingController();
   TextEditingController value2 = TextEditingController();
@@ -33,7 +33,7 @@ class _WidgetExampleState extends State<WidgetApp> {
   @override
   void initState() {
     super.initState();
-    for(var item in _buttonList) {
+    for (var item in _buttonList) {
       _dropDownMenuItems.add(DropdownMenuItem(value: item, child: Text(item)));
     }
     _buttonText = _dropDownMenuItems[0].value;
@@ -61,17 +61,19 @@ class _WidgetExampleState extends State<WidgetApp> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextField(keyboardType: TextInputType.number, controller:value1),
+                child: TextField(
+                    keyboardType: TextInputType.number, controller: value1),
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextField(keyboardType: TextInputType.number, controller:value2),
+                child: TextField(
+                    keyboardType: TextInputType.number, controller: value2),
               ),
               Padding(
                 padding: EdgeInsets.all(15),
                 child: RaisedButton(
                     child: Row(
-                      children: <Widget>[Icon(Icons.add),Text(_buttonText)],
+                      children: <Widget>[Icon(Icons.add), Text(_buttonText!)],
                     ),
                     color: Colors.amber,
                     onPressed: () {
@@ -94,11 +96,15 @@ class _WidgetExampleState extends State<WidgetApp> {
               ),
               Padding(
                 padding: EdgeInsets.all(15),
-                child: DropdownButton(items: _dropDownMenuItems, onChanged: (value) {
-                  setState(() {
-                    _buttonText = value;
-                  });
-                }, value: _buttonText,),
+                child: DropdownButton(
+                  items: _dropDownMenuItems,
+                  onChanged: (value) {
+                    setState(() {
+                      _buttonText = value;
+                    });
+                  },
+                  value: _buttonText,
+                ),
               ),
             ],
           ),
