@@ -47,7 +47,7 @@ class _NativeApp extends State<NativeApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Native API example'),
+        title: Text('Native API Example'),
       ),
       body: Container(
         child: Center(
@@ -93,5 +93,4 @@ class _NativeApp extends State<NativeApp> {
       await platform3.invokeMethod('showDialog');
     } on PlatformException catch (e) {}
   }
-
 }
